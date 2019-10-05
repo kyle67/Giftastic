@@ -17,24 +17,28 @@
 <body>
 
   <div class="container">
-    <h1>Emoji Categories</h1>
+    <h1>Emoji Faces</h1>
 
     <!--Create form for user to add Emoji-->
     <div id="buttons-view"></div>
 
     <form id="Emoji-form">
-      <label for="Emoji-input">Add an Emoji</label>
+      <label for="Emoji-input">Add an Emoji Face</label>
       <input type="text" id="Emoji-input"><br>
 
     <!-- Create button telling user to add Emoji -->
       <input id="add-Emoji" type="submit" value="Click to add Emoji">
     </form>
+    <div id="gifs-appear-here">
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 	  
-	// Create array with Emoji categories
-      var Emoji = ["Smileys & People","Animals & Nature","Travel & Places","Objects","Symbols","Flags"]
+	// Create array with Emoji faces
+      var Emoji = ["Thinking","Sweat","Eyes","Heart Eyes"]
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        Emoji + "&api_key=4xCifF50Qdwt0OVPnTdp06YGWC5aSTQI&limit=10";
 
     // Create a function to display Emoji button
       function renderButtons() {
@@ -52,14 +56,17 @@
     // Create event function telling java to listen for click and preventing form from submitting wrong data
       $("#add-Emoji").on("click", function(event) {
         event.preventDefault();
-        var movie = $("#Emoji-input").val().trim();
-        Emoji.push(Emoji);
+        var Emojiinput = $("#Emoji-input").val().trim();
+        Emoji.push(Emojiinput);
         renderButtons();
       });
     // Create and call render buttons to return initial array
       renderButtons();
+
+
     </script>
   </div>
+
 </body>
 
 </html>
