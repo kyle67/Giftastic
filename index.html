@@ -1,31 +1,65 @@
 <!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<meta charset="UTF-8">
-		<title>Emoji GIF Generator</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="assets/javascript/giphy-generator.js"></script>
-	</head>
-	<body>
-		<div class = "row">
-			<h1>Kyle's Favorite Emoji's</h1>
-			<div id = "button-container" class = "dotted-border">
-			</div>
-		</div>
-		<div class = "row">
-			<div id = "gif-container" class = "col-xs-8 emoji-sans-font">
-			</div>
-			<div class = "col-xs-1">
-			</div>
-			<div class = "col-xs-3">
-				<form class="emoji-sans-font">
-					Add buttons for your favorite emojis:<br>
-					<input type = "text" name = "emoji" id = "emoji" class="emoji-font">
-					<input type = "submit" value = "Submit" class = "btn" id = "submit">
-				</form>
-			</div>
-		</div>
-	</body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Emoji GifTastic</title>
+  <style type="text/css">
+    button,
+    div,
+    form,
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Emoji Categories</h1>
+
+    <!--Create form for user to add Emoji-->
+    <div id="buttons-view"></div>
+
+    <form id="Emoji-form">
+      <label for="Emoji-input">Add an Emoji</label>
+      <input type="text" id="Emoji-input"><br>
+
+    <!-- Create button telling user to add Emoji -->
+      <input id="add-Emoji" type="submit" value="Click to add Emoji">
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+	  
+	// Create array with Emoji categories
+      var Emoji = ["Smileys & People","Animals & Nature","Travel & Places","Objects","Symbols","Flags"]
+
+    // Create a function to display Emoji button
+      function renderButtons() {
+         $("#buttons-view").empty();
+        for (var i = 0; i < Emoji.length; i++) {
+        var a = $("<button>");
+        
+          a.addClass("Emoji");
+          a.attr("data-name", Emoji[i]);
+          a.text(Emoji[i]);
+          $("#buttons-view").append(a);
+        }
+      }
+
+    // Create event function telling java to listen for click and preventing form from submitting wrong data
+      $("#add-Emoji").on("click", function(event) {
+        event.preventDefault();
+        var movie = $("#Emoji-input").val().trim();
+        Emoji.push(Emoji);
+        renderButtons();
+      });
+    // Create and call render buttons to return initial array
+      renderButtons();
+    </script>
+  </div>
+</body>
+
+</html>
